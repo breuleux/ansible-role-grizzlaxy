@@ -1,0 +1,12 @@
+galaxy_info:
+  author: Olivier Breuleux
+  description: Install a grizzlaxy server
+  company: Mila
+  role_name: grizzlaxy
+  namespace: mila
+  license: MIT
+  min_ansible_version: 2.15
+  platforms:
+    - name: Debian
+      versions:
+        - bullseye
