@@ -1,0 +1,41 @@
+---
+- name: Fill configuration template
+  ansible.builtin.template:
+    src: "app-config.yaml"
+    dest: "{{ app_fragments }}/00-grizzlaxy.yaml"
+
+- name: Consolidate all configuration
+  ansible.builtin.assemble:
+    src: "{{ app_fragments }}"
+    dest: "{{ app_config }}"
+    mode: "0600"
+
+- name: Create cert directory
+  ansible.builtin.file:
+    path: "{{ app_location }}/config/cert"
+    state: directory
+    mode: "0700"
+
+- name: Copy certificate
+  ansible.builtin.copy:
+    content: "{{ app_ssl_cert }}"
+    dest: "{{ app_location }}/config/cert/cert.pem"
+    mode: "0600"
+
+- name: Copy certificate key
+  ansible.builtin.copy:
+    content: "{{ app_ssl_key }}"
+    dest: "{{ app_location }}/config/cert/cert-key.pem"
+    mode: "0600"
+
+- name: Fill service definition template
+  become: true
+  ansible.builtin.template:
+    src: "grizzlaxy.service"
+    dest: "/etc/systemd/system/{{ app_name }}-web.service"
+
+- name: Reload service
+  become: true
+  ansible.builtin.systemd:
+    name: "{{ app_name }}-web.service"
+    state: reloaded

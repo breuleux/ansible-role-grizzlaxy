@@ -1,0 +1,31 @@
+- name: Create the app directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ app_location }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+
+- name: Create the data directory
+  ansible.builtin.file:
+    path: "{{ app_location }}/data"
+    state: directory
+    mode: "0755"
+
+- name: Create the config directory
+  ansible.builtin.file:
+    path: "{{ app_location }}/config"
+    state: directory
+    mode: "0755"
+
+- name: Clear fragments directory
+  ansible.builtin.file:
+    path: "{{ app_fragments }}"
+    state: absent
+
+- name: Create fragments directory
+  ansible.builtin.file:
+    path: "{{ app_fragments }}"
+    state: directory
+    mode: "0700"

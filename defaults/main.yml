@@ -1,0 +1,20 @@
+---
+app_location: "/{{ app_name }}"
+app_port: 8000
+app_host: "127.0.0.1"
+app_module: "{{ app_name }}"
+app_config: "{{ app_location }}/config/app.yaml"
+app_fragments: "{{ app_location }}/config/fragments"
+conda_base: "{{ app_location }}/miniconda3"
+conda_run: "{{ conda_base }}/bin/conda run -n {{ app_name }}"
+app_code_path: "{{ app_location }}/code/{{ app_name }}"
+app_enable_oauth: false
+app_enable_ssl: false
+app_enable_sentry: false
+google_client_id: null
+google_client_secret: null
+app_sentry_dsn: null
+app_sentry_traces_sample_rate: null
+app_sentry_environment: null
+app_ssl_cert: "invalid: none provided"
+app_ssl_key: "invalid: none provided"

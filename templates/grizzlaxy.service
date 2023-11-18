@@ -1,0 +1,12 @@
+[Unit]
+Description="Run the web interface for {{ app_name }}"
+After=network.target
+
+[Service]
+User={{ app_user }}
+Type=simple
+ExecStart={{ conda_run }} python -m {{ app_module }} web --config {{ app_config }}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

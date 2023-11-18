@@ -1,0 +1,23 @@
+grizzlaxy:
+  port: {{ app_port | to_yaml }}
+  host: "{{ app_host }}"
+  ssl:
+    enabled: {{ app_enable_ssl | to_yaml }}
+    keyfile: "cert/cert-key.pem"
+    certfile: "cert/cert.pem"
+  oauth:
+    enabled: {{ app_enable_oauth | to_yaml }}
+    permissions: permissions.json
+    name: google
+    server_metadata_url: "https://accounts.google.com/.well-known/openid-configuration"
+    client_kwargs:
+      scope: "openid email profile"
+      prompt: "select_account"
+    environ:
+      GOOGLE_CLIENT_ID: "{{ google_client_id }}"
+      GOOGLE_CLIENT_SECRET: "{{ google_client_secret }}"
+  sentry:
+    enabled: {{ app_enable_sentry | to_yaml }}
+    dsn: "{{ app_sentry_dsn }}"
+    traces_sample_rate: {{ app_sentry_traces_sample_rate | to_yaml }}
+    environment: {{ app_sentry_environment | to_yaml }}
