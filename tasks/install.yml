@@ -19,10 +19,10 @@
     version: "{{ app_tag }}"
 
 - name: Create a conda environment
-  ansible.builtin.shell:
+  ansible.builtin.command:
     cmd: "{{ conda_base }}/bin/conda create --name {{ app_name }} python={{ python_version }} --force -y"
     creates: "{{ conda_base }}/envs/{{ app_name }}"
 
 - name: Install dependencies
-  ansible.builtin.shell:
+  ansible.builtin.command:
     cmd: "{{ conda_run }} pip install -e {{ app_code_path }} -r {{ app_code_path }}/pinned-requirements.txt"
