@@ -1,8 +1,26 @@
 ---
-- name: Restore permissions on the app directory
+- name: Restore permissions the config directory
   become: true
   ansible.builtin.file:
-    path: "{{ app_location }}"
+    path: "{{ app_config_dir }}"
+    state: directory
+    recurse: true
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+
+- name: Restore permissions the code directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ app_code_dir }}"
+    state: directory
+    recurse: true
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+
+- name: Restore permissions the conda directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ conda_base }}"
     state: directory
     recurse: true
     owner: "{{ app_user }}"

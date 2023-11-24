@@ -1,12 +1,12 @@
 ---
 - name: Clear out the configuration
   ansible.builtin.file:
-    path: "{{ app_location }}/config"
+    path: "{{ app_config_dir }}"
     state: absent
 
 - name: Clear out code
   ansible.builtin.file:
-    path: "{{ app_code_path }}"
+    path: "{{ app_code_dir }}"
     state: absent
 
 - name: Clear out conda

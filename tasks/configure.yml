@@ -13,20 +13,20 @@
 
 - name: Create cert directory
   ansible.builtin.file:
-    path: "{{ app_location }}/config/cert"
+    path: "{{ app_config_dir }}/cert"
     state: directory
     mode: "0700"
 
 - name: Copy certificate
   ansible.builtin.copy:
     content: "{{ app_ssl_cert }}"
-    dest: "{{ app_location }}/config/cert/cert.pem"
+    dest: "{{ app_config_dir }}/cert/cert.pem"
     mode: "0600"
 
 - name: Copy certificate key
   ansible.builtin.copy:
     content: "{{ app_ssl_key }}"
-    dest: "{{ app_location }}/config/cert/cert-key.pem"
+    dest: "{{ app_config_dir }}/cert/cert-key.pem"
     mode: "0600"
 
 - name: Fill service definition template

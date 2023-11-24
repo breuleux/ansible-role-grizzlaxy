@@ -47,7 +47,7 @@ The defaults should work just fine, but you can change these if you want:
 These variables you should not set, but they may be useful to define extra work to do in the playbook:
 
 * `app_config`: Path to the configuration file.
-* `app_code_path`: Path to the cloned repository.
+* `app_code_dir`: Path to the cloned repository.
 * `conda_run`: Put that in front of a shell command to run it in the app's conda environment.
 
 
@@ -56,7 +56,7 @@ These variables you should not set, but they may be useful to define extra work 
 The repository referenced by `app_repo` must follow certain rules in order to work with this role:
 
 * The URL must be accessible from the host, evidently. It can be a path on the filesystem.
-* The repository directory must be pip-installable using `pip -e {{ app_code_path }}`.
+* The repository directory must be pip-installable using `pip -e {{ app_code_dir }}`.
 * Must contain a file named `pinned-requirements.txt` installable with `pip -r` which contains versions for all dependencies. You may generate this file using the `pip-compile` utility in the `pip-tools` package. Do not forget to commit it and update it whenever there are changes.
 * Must contain a Python package named `{{ app_name }}`.
 * The Python package must contain a `__main__` file.

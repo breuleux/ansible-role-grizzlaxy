@@ -15,7 +15,7 @@
 - name: Checkout the code
   ansible.builtin.git:
     repo: "{{ app_repo }}"
-    dest: "{{ app_code_path }}"
+    dest: "{{ app_code_dir }}"
     version: "{{ app_tag }}"
 
 - name: Create a conda environment
@@ -25,4 +25,4 @@
 
 - name: Install dependencies
   ansible.builtin.command:
-    cmd: "{{ conda_run }} pip install -e {{ app_code_path }} -r {{ app_code_path }}/pinned-requirements.txt"
+    cmd: "{{ conda_run }} pip install -e {{ app_code_dir }} -r {{ app_code_dir }}/pinned-requirements.txt"

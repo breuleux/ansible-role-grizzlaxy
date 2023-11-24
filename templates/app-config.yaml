@@ -1,3 +1,5 @@
+root: "{{ app_location }}"
+data_dir: "{{ app_data_dir }}"
 grizzlaxy:
   port: {{ app_port | to_yaml }}
   host: "{{ app_host }}"

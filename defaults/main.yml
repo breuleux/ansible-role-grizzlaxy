@@ -3,11 +3,13 @@ app_location: "/{{ app_name }}"
 app_port: 8000
 app_host: "127.0.0.1"
 app_module: "{{ app_name }}"
-app_config: "{{ app_location }}/config/app.yaml"
-app_fragments: "{{ app_location }}/config/fragments"
+app_data_dir: "{{ app_location }}/data"
+app_config_dir: "{{ app_location }}/config"
+app_config: "{{ app_config_dir }}/app.yaml"
+app_fragments: "{{ app_config_dir }}/fragments"
 conda_base: "{{ app_location }}/miniconda3"
 conda_run: "{{ conda_base }}/bin/conda run -n {{ app_name }}"
-app_code_path: "{{ app_location }}/code/{{ app_name }}"
+app_code_dir: "{{ app_location }}/code"
 app_enable_oauth: false
 app_enable_ssl: false
 app_enable_sentry: false

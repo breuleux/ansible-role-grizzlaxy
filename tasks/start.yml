@@ -7,10 +7,28 @@
     name: "{{ app_name }}-web.service"
     state: stopped
 
-- name: Claim the app directory
+- name: Claim the config directory
   become: true
   ansible.builtin.file:
-    path: "{{ app_location }}"
+    path: "{{ app_config_dir }}"
+    state: directory
+    recurse: true
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Claim the code directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ app_code_dir }}"
+    state: directory
+    recurse: true
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Claim the conda directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ conda_base }}"
     state: directory
     recurse: true
     owner: "{{ ansible_user }}"
