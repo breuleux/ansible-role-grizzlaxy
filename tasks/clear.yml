@@ -1,3 +1,4 @@
+---
 - name: Clear out the configuration
   ansible.builtin.file:
     path: "{{ app_location }}/config"

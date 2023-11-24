@@ -3,6 +3,7 @@
   ansible.builtin.template:
     src: "app-config.yaml"
     dest: "{{ app_fragments }}/00-grizzlaxy.yaml"
+    mode: "0600"
 
 - name: Consolidate all configuration
   ansible.builtin.assemble:
