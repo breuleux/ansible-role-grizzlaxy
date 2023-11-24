@@ -4,12 +4,13 @@ app_port: 8000
 app_host: "127.0.0.1"
 app_module: "{{ app_name }}"
 app_data_dir: "{{ app_root }}/data"
-app_config_dir: "{{ app_root }}/config"
+app_dir: "{{ app_root }}/app"
+app_config_dir: "{{ app_dir }}/config"
 app_config: "{{ app_config_dir }}/app.yaml"
 app_fragments: "{{ app_config_dir }}/fragments"
-conda_base: "{{ app_root }}/miniconda3"
+conda_base: "{{ app_dir }}/miniconda3"
 conda_run: "{{ conda_base }}/bin/conda run -n {{ app_name }}"
-app_code_dir: "{{ app_root }}/code"
+app_code_dir: "{{ app_dir }}/code"
 app_enable_oauth: false
 app_enable_ssl: false
 app_enable_sentry: false
