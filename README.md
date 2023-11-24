@@ -38,8 +38,8 @@ The following variables should be vault-encrypted:
 
 The defaults should work just fine, but you can change these if you want:
 
-* `app_location`: The path on the target system in which to put all the code and data. Defaults to `/{{ app_name }}`
-* `conda_base`: The path where to put miniconda (defaults to `{{ app_location }}/miniconda3`)
+* `app_root`: The path on the target system in which to put all the code and data. Defaults to `/{{ app_name }}`
+* `conda_base`: The path where to put miniconda (defaults to `{{ app_root }}/miniconda3`)
 
 
 ## Other variables
