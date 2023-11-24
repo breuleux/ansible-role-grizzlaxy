@@ -1,0 +1,17 @@
+---
+- name: Pause service
+  become: true
+  register: service_stop
+  failed_when: '"name" not in service_stop and "Could not find the requested service" not in service_stop.msg'
+  ansible.builtin.systemd:
+    name: "{{ app_name }}-web.service"
+    state: stopped
+
+- name: Claim the app directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ app_location }}"
+    state: directory
+    recurse: true
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"

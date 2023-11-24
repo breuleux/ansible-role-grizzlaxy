@@ -34,9 +34,3 @@
   ansible.builtin.template:
     src: "grizzlaxy.service"
     dest: "/etc/systemd/system/{{ app_name }}-web.service"
-
-- name: Restart service
-  become: true
-  ansible.builtin.systemd:
-    name: "{{ app_name }}-web.service"
-    state: restarted

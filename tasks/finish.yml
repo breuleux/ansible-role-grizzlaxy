@@ -1,0 +1,16 @@
+---
+- name: Restore permissions on the app directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ app_location }}"
+    state: directory
+    recurse: true
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+
+- name: Restart service
+  become: true
+  ansible.builtin.systemd:
+    name: "{{ app_name }}-web.service"
+    daemon_reload: true
+    state: restarted
